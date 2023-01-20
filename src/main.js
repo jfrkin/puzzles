@@ -6,7 +6,7 @@ import router from "./router";
 
 import "./assets/main.css";
 
-var history = require('connect-history-api-fallback');
+import history from 'connect-history-api-fallback';
 
 const app = createApp(App);
 
