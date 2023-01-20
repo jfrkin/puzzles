@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import NaslovnicaView from "../views/NaslovnicaView.vue";
 import NotFound from "../views/NotFound.vue";
 import LoginView from "../views/LoginView.vue";
+import PuzzleView from "../views/PuzzleView.vue"
 import { useAuthStore } from "../stores/auth.js";
 
 const router = createRouter({
@@ -20,9 +21,9 @@ const router = createRouter({
     {
       path: "/puzzle",
       name: "puzzle",
-      component: () => import("../views/PuzzleView.vue"),
+      component: PuzzleView
     },
-    { path: "/:pathMatch(.*)", 
+    { path: "/:pathMatch(.*)*", 
       name: "NotFound", 
       component: NotFound 
     }
