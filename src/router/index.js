@@ -37,6 +37,8 @@ router.beforeEach(async (to) => {
   if (authRequired && !auth.isAuthenticated) {
     auth.setLandingUrl(to.fullPath);
     return "/login";
+  } else {
+    return "/";
   }
 });
 
