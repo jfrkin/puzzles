@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import NaslovnicaView from "../views/NaslovnicaView.vue";
-import NotFound from "../views/NotFound.vue"
-import LoginView from "../views/LoginView.vue" 
+import NotFound from "../views/NotFound.vue";
+import LoginView from "../views/LoginView.vue";
 import { useAuthStore } from "../stores/auth.js";
 
 const router = createRouter({
@@ -22,13 +22,9 @@ const router = createRouter({
       name: "puzzle",
       component: () => import("../views/PuzzleView.vue"),
     },
-    { path: "/:catchAll(.*)",
-      name: "NotFound",
-      component: NotFound,
-    },
+    { path: "/:catchAll(.*)", name: "NotFound", component: NotFound },
   ],
 });
-
 
 router.beforeEach(async (to) => {
   const publicPages = ["/login"];

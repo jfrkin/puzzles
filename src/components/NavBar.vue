@@ -1,76 +1,82 @@
 <template>
-    <header>
-      <img
-        alt="Šah logo"
-        class="logo"
-        src="@/assets/logo.jpg"
-        width="125"
-        height="125"
-      />
+  <header>
+    <img
+      alt="Šah logo"
+      class="logo"
+      src="@/assets/logo.jpg"
+      width="125"
+      height="125"
+    />
 
-      <div class="wrapper">
-        <HelloWorld msg="Najbolja stranica za vježbanje šaha." />
+    <div class="wrapper">
+      <HelloWorld msg="Najbolja stranica za vježbanje šaha." />
 
-        <div class="nav-row">
-          <div>
-            <nav>
-              <RouterLink to="/">Naslovnica</RouterLink>
-              <RouterLink to="/puzzle">Puzzle</RouterLink>
-            </nav>
-          </div>
-          <div class="user-info">
-            <span v-show="!edit" @click="toggleEdit(this, username)">Korisnik: {{ username }}</span>
-            
-            <label for="username" v-show="edit">Korisnik: </label>
-            <input type="text"
-                  name="username"
-                  v-model="username"
-                  v-show="edit"
-                  @blur="saveEdit(ev, username)"> <br>
-          </div>
+      <div class="nav-row">
+        <div>
+          <nav>
+            <RouterLink to="/">Naslovnica</RouterLink>
+            <RouterLink to="/puzzle">Puzzle</RouterLink>
+          </nav>
+        </div>
+        <div class="user-info">
+          <span v-show="!edit" @click="toggleEdit(this, username)"
+            >Korisnik: {{ username }}</span
+          >
+
+          <label for="username" v-show="edit">Korisnik: </label>
+          <input
+            type="text"
+            name="username"
+            v-model="username"
+            v-show="edit"
+            @blur="saveEdit(ev, username)"
+          />
+          <br />
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 </template>
 
 <script>
 import { RouterLink } from "vue-router";
-import HelloWorld from "../components/HelloWorld.vue"
+import HelloWorld from "../components/HelloWorld.vue";
 import { useAuthStore } from "../stores/auth";
 
 export default {
   components: {
-    HelloWorld, RouterLink
+    HelloWorld,
+    RouterLink,
   },
   data() {
     return {
       username: "",
-      edit: false
-    }
+      edit: false,
+    };
   },
   beforeMount() {
     const store = useAuthStore();
     this.username = store.username;
   },
   methods: {
-    toggleEdit: function(ev, username){
-    	this.edit = !this.edit;
-        
+    toggleEdit: function (ev, username) {
+      this.edit = !this.edit;
+
       // Focus input field
-      if(username.edit){
-          Vue.nextTick(function() {
-            ev.$$.input.focus();
-          })   
+      if (username.edit) {
+        Vue.nextTick(function () {
+          ev.$$.input.focus();
+        });
       }
     },
-      
-    saveEdit: function(ev, username){
+
+    saveEdit: function (ev, username) {
       const store = useAuthStore();
       this.toggleEdit(ev, username);
       store.setUsername(username);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -78,7 +84,7 @@ header {
   line-height: 1.5;
   max-height: 100vh;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   padding: 1em 1em;
 }
 

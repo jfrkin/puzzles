@@ -7,7 +7,7 @@ export const useCounterStore = defineStore("counter", () => {
     count.value++;
   }
 
-  function reset(){
+  function reset() {
     count.value = 0;
   }
 
