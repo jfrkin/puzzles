@@ -22,7 +22,10 @@ const router = createRouter({
       name: "puzzle",
       component: () => import("../views/PuzzleView.vue"),
     },
-    { path: "/:catchAll(.*)", name: "NotFound", component: NotFound },
+    { path: "/:pathMatch(.*)", 
+      name: "NotFound", 
+      component: NotFound 
+    }
   ],
 });
 
