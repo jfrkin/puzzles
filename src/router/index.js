@@ -38,10 +38,6 @@ router.beforeEach(async (to) => {
   if (authRequired && !auth.isAuthenticated) {
     auth.setLandingUrl(to.fullPath);
     return "/login";
-  } else {
-    if (to.path !== "/"){
-      router.push({path: to.path})
-    }
   }
 });
 
