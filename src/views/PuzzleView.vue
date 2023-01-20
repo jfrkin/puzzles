@@ -23,7 +23,6 @@
 import Layout from "../layouts/Layout.vue";
 import Chessboard from "../components/Chessboard.vue";
 import Leaderboard from "../components/Leaderboard.vue";
-import { useAuthStore } from "../stores/auth";
 import Parse from "parse/dist/parse.js";
 
 export default {
@@ -46,7 +45,6 @@ export default {
 
     query.find().then(
       (data) => {
-        console.log(data);
         data.forEach((solver) =>
           this.ratingList.push({
             username: solver.attributes.username,
@@ -73,8 +71,8 @@ export default {
       solver.set("moves", newSolver.moves);
 
       solver.save().then(
-        (solver) => {
-          alert("New object created with objectId: " + solver.id);
+        () => {
+          alert("Uspješno ste spremili rezultat!");
         },
         (error) => {
           alert(
